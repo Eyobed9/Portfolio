@@ -23,12 +23,6 @@ const categoryLabelKeys: Record<string, string> = {
 type Tab = "All" | SkillCategory;
 const TABS: Tab[] = ["All", ...SKILL_CATEGORIES];
 
-/**
- * Skills as a GitHub-style language listing: a coloured dot and a name, grouped
- * by category. No levels, no percentage bars. The proportion bar at the top
- * mirrors GitHub's language strip, but is weighted purely by how many entries
- * each category has, so it claims nothing about proficiency.
- */
 const SkillsPage = () => {
   const { isDark } = useTheme();
   const { t } = useTranslation();

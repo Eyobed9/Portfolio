@@ -7,12 +7,17 @@ import { useEffect, useState } from "react";
  */
 export const useCountUp = (end: number, duration = 1500): number => {
   const [count, setCount] = useState(0);
+  const [prevEnd, setPrevEnd] = useState(end);
 
-  useEffect(() => {
+  if (end !== prevEnd) {
+    setPrevEnd(end);
     if (end <= 0) {
       setCount(0);
-      return;
     }
+  }
+
+  useEffect(() => {
+    if (end <= 0) return;
 
     let startTime: number | null = null;
     let frameId: number;

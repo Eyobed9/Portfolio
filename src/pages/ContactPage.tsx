@@ -84,8 +84,8 @@ const ContactPage = () => {
       setStatus("sent");
       form.reset();
       localStorage.setItem("lastContactSubmit", Date.now().toString());
-    } catch (err: any) {
-      if (err.message === "rate_limited") {
+    } catch (err: unknown) {
+      if (err instanceof Error && err.message === "rate_limited") {
         alert(t("contact.cooldownMessage") || "Please wait 60 seconds before sending another message.");
         setStatus("idle");
       } else {
