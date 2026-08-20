@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eyobeddemissie.pro.et/sitemap.xml

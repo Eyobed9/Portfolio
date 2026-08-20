@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Anti-flash: set saved theme before any paint -->
+    <script>
+      (function () {
+        var t = localStorage.getItem("portfolio-theme");
+        if (t === "light" || t === "dark") {
+          document.documentElement.dataset.theme = t;
+          document.documentElement.style.colorScheme = t;
+        }
+      })();
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eyobed Demissie, full-stack software engineer in Addis Ababa focused on frontend and mobile engineering with React, Next.js, TypeScript, Python and Django."
+    />
+    <title>Eyobed Demissie | Full-Stack Software Engineer</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eyobeddemissie.pro.et/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Eyobed Demissie | Full-Stack Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Eyobed Demissie, full-stack software engineer in Addis Ababa focused on frontend and mobile engineering with React, Next.js, TypeScript, Python and Django."
+    />
+    <meta property="og:url" content="https://eyobeddemissie.pro.et/" />
+    <meta property="og:site_name" content="Eyobed Demissie" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Eyobed Demissie | Full-Stack Software Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-stack software engineer in Addis Ababa focused on frontend and mobile engineering with React, Next.js, TypeScript, Python and Django."
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Eyobed Demissie",
+        "jobTitle": "Full-Stack Software Engineer",
+        "url": "https://eyobeddemissie.pro.et",
+        "sameAs": [
+          "https://github.com/Eyobed9",
+          "https://www.linkedin.com/in/eyobed-d-249634230/"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Addis Ababa",
+          "addressCountry": "ET"
+        },
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Python",
+          "Django",
+          "Mobile Development"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
