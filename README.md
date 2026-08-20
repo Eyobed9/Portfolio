@@ -93,9 +93,7 @@ python docs/generate_resume.py
 Create a `.env` file in the project root:
 
 ```
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_WEB3FORMS_KEY=your_access_key
 ```
 
 ---
@@ -109,7 +107,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 - 🛠️ **Skills Grid** with category filters and GitHub-style language bar
 - 📁 **Project Showcase** with category filters and thumbnail previews
 - 💼 **Services Section** highlighting key offerings
-- 📬 **Contact Form** powered by EmailJS
+- 📬 **Contact Form** powered by Web3Forms
 - 📥 **Downloadable Résumé** auto-generated via Python
 - ⚡ **Smooth Scroll Animations** and micro-interactions
 

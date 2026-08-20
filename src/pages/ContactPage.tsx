@@ -49,35 +49,29 @@ const ContactPage = () => {
     }
 
     const form = event.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
     
-    // Simple client-side HTML stripping
-    const stripHtml = (str: string) => str.replace(/<[^>]*>?/gm, "");
-
-    const payload = {
-      name: stripHtml(String(data.get("name") ?? "").trim()),
-      email: stripHtml(String(data.get("email") ?? "").trim()),
-      project: stripHtml(String(data.get("project") ?? "").trim()),
-      details: stripHtml(String(data.get("details") ?? "").trim()),
-      company: stripHtml(String(data.get("company") ?? "").trim()),
-    };
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY || "");
+    formData.append("subject", `Portfolio enquiry from ${formData.get("name")}`);
+    
+    // Honeypot check for bots
+    if (formData.get("company")) {
+      setStatus("sent");
+      form.reset();
+      return;
+    }
 
     setStatus("sending");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { 
-          "content-type": "application/json",
-          "x-csrf-token": "portfolio-contact-submit" // Basic CSRF protection via custom header
-        },
-        body: JSON.stringify(payload),
+        body: formData
       });
 
-      if (!res.ok) {
-        if (res.status === 429) {
-          throw new Error("rate_limited");
-        }
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
         throw new Error("send_failed");
       }
 
@@ -189,7 +183,7 @@ const ContactPage = () => {
           </label>
           <textarea
             id="contact-details"
-            name="details"
+            name="message"
             required
             rows={5}
             placeholder={t("contact.detailsPlaceholder")}
