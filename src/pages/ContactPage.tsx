@@ -203,9 +203,7 @@ const ContactPage = () => {
           >
             {status === "sending"
               ? t("contact.sending")
-              : status === "sent"
-                ? t("contact.messageSent")
-                : t("contact.sendMessage")}
+              : t("contact.sendMessage")}
           </button>
           <span className={`font-mono text-xs ${c.meta}`}>
             {t("contact.responseTime")}
