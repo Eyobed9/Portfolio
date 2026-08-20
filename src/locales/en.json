@@ -132,6 +132,7 @@
     "responseTime": "Typical response: within 24 hours",
     "successMessage": "Message sent! I will reply within 24 hours.",
     "errorMessage": "Something went wrong. Please try again or reach out on LinkedIn.",
+    "cooldownMessage": "Please wait 60 seconds before sending another message.",
     "availabilityTitle": "Availability",
     "availabilityBody": "Open to frontend and full-stack freelance builds, and long-term product work.",
     "linkedinTitle": "LinkedIn",

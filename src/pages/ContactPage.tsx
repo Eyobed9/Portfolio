@@ -6,7 +6,7 @@ import { tones } from "@/config/palette";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { CONTACT } from "@/data/about";
 
-type FormStatus = "idle" | "sending" | "sent" | "error";
+type FormStatus = "idle" | "sending" | "sent" | "error" | "rate_limited";
 
 const ContactPage = () => {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -43,7 +43,7 @@ const ContactPage = () => {
     if (lastSubmit) {
       const elapsed = Date.now() - parseInt(lastSubmit, 10);
       if (elapsed < 60000) {
-        alert(t("contact.cooldownMessage") || "Please wait 60 seconds before sending another message.");
+        setStatus("rate_limited");
         return;
       }
     }
@@ -86,8 +86,7 @@ const ContactPage = () => {
       localStorage.setItem("lastContactSubmit", Date.now().toString());
     } catch (err: unknown) {
       if (err instanceof Error && err.message === "rate_limited") {
-        alert(t("contact.cooldownMessage") || "Please wait 60 seconds before sending another message.");
-        setStatus("idle");
+        setStatus("rate_limited");
       } else {
         setStatus("error");
       }
@@ -132,15 +131,6 @@ const ContactPage = () => {
           </li>
         ))}
       </ul>
-
-      <div className={`mt-6 rounded border p-4 ${c.border}`}>
-        <p className={`font-mono text-xs uppercase tracking-wide ${c.accent}`}>
-          {t("contact.availabilityTitle")}
-        </p>
-        <p className={`mt-2 text-sm leading-normal ${c.body}`}>
-          {t("contact.availabilityBody")}
-        </p>
-      </div>
 
       <form className="mt-10 space-y-4" onSubmit={handleSubmit}>
         {/* Honeypot — hidden from real users, filled by bots */}
@@ -231,6 +221,12 @@ const ContactPage = () => {
         {status === "sent" ? (
           <p role="status" aria-live="polite" className={`text-sm ${c.accent}`}>
             {t("contact.successMessage")}
+          </p>
+        ) : null}
+
+        {status === "rate_limited" ? (
+          <p role="alert" className="text-sm text-red-400">
+            {t("contact.cooldownMessage")}
           </p>
         ) : null}
 
