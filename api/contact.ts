@@ -52,6 +52,10 @@ const escapeHtml = (value: string) =>
 // Basic in-memory rate limiting (1 request per 60 seconds per IP)
 const rateLimitMap = new Map<string, number>();
 
+export const config = {
+  runtime: 'edge',
+};
+
 export default async function handler(request: Request): Promise<Response> {
   if (request.method !== "POST") {
     return json({ error: "method_not_allowed" }, 405);
